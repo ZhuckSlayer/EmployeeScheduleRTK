@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id ("kotlin-kapt")
+    id("com.google.devtools.ksp")
     alias(libs.plugins.google.gms.google.services)
 }
 
@@ -50,8 +51,12 @@ dependencies {
     implementation (libs.kotlinx.coroutines.core)
     implementation (libs.kotlinx.coroutines.android)
 
+    implementation (libs.androidx.room.ktx)
+
     implementation (libs.androidx.room.runtime)
-    annotationProcessor (libs.androidx.room.compiler)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.fragment.ktx)
+    ksp (libs.androidx.room.compiler)
     implementation (libs.dagger)
     kapt (libs.dagger.android.processor)
     kapt (libs.dagger.compiler)
