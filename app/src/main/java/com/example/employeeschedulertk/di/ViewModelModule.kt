@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.employeeschedulertk.presentation.login.LoginViewModel
 import com.example.employeeschedulertk.presentation.MainViewModel
 import com.example.employeeschedulertk.presentation.agents.AgentsViewModel
+import com.example.employeeschedulertk.presentation.modalFragment.ModalFragmentScheduleViewModel
 import com.example.employeeschedulertk.presentation.profile.ProfileViewModel
 import com.example.employeeschedulertk.presentation.supervisor.SupervisorProfileViewModel
 import com.example.employeeschedulertk.presentation.weekends.ChooseDaysViewModel
@@ -43,4 +44,9 @@ interface ViewModelModule {
     @Binds
     @ViewModelKey(ChooseDaysViewModel::class)
     fun bindsChooseDaysViewModel(viewModel: ChooseDaysViewModel):ViewModel
+
+    @IntoMap
+    @Binds
+    @ViewModelKey(ModalFragmentScheduleViewModel::class)
+    fun bindsModalFragmentViewModel(viewModel: ModalFragmentScheduleViewModel):ViewModel
 }

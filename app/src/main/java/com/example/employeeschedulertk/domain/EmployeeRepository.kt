@@ -9,9 +9,12 @@ import kotlinx.coroutines.flow.StateFlow
 interface EmployeeRepository {
 
     fun getEmployeeList(): StateFlow<List<EmployeeInfo>>
-    fun getEmployee(id:String):Flow<EmployeeInfo>
+    fun getEmployee(id:String):EmployeeInfo
+
+    fun getEmployeeFlow(id:String):Flow<EmployeeInfo>
+
 
     suspend fun insertEmployee(snapshot: DataSnapshot)
-    fun updateEmployeeSchedule(auth:String,children:List<String>)
+    fun updateEmployeeSchedule(auth:String,children:String)
 
 }

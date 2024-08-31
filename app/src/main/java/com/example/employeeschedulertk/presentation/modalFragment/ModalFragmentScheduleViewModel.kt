@@ -1,16 +1,12 @@
-package com.example.employeeschedulertk.presentation.weekends
+package com.example.employeeschedulertk.presentation.modalFragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.employeeschedulertk.data.network.FireBaseDataHelper
 import com.example.employeeschedulertk.domain.EmployeeInfo
-import com.example.employeeschedulertk.domain.GetEmployeeListUseCase
 import com.example.employeeschedulertk.domain.GetEmployeeUseCase
-import com.example.employeeschedulertk.domain.InsertEmployeeUseCase
-import com.example.employeeschedulertk.domain.UpdateEmployeeScheduleUseCase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -19,22 +15,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ChooseDaysViewModel @Inject constructor(
+class ModalFragmentScheduleViewModel @Inject constructor(
     private val fireBaseDataHelper: FireBaseDataHelper,
-    private val updateEmployeeScheduleUseCase: UpdateEmployeeScheduleUseCase,
     private val getEmployeeUseCase: GetEmployeeUseCase
 ) : ViewModel() {
 
-    private val coroutineScope = CoroutineScope(Dispatchers.IO)
+    private val coroutineScope= CoroutineScope(Dispatchers.IO)
 
     private val _testList = MutableLiveData<List<EmployeeInfo>>()
     val testList: LiveData<List<EmployeeInfo>>
         get() = _testList
-
-    fun insertSchedule(schedule: String) {
-        val user = fireBaseDataHelper.firebaseAuth.currentUser?.uid.toString()
-        updateEmployeeScheduleUseCase(user, schedule)
-    }
 
     fun getScheduleOnDay(day: Int) {
         val listId = mutableListOf<EmployeeInfo>()

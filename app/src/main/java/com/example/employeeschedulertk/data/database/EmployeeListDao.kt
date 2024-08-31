@@ -11,7 +11,10 @@ import kotlinx.coroutines.flow.Flow
 interface EmployeeListDao {
 
     @Query("SELECT * FROM Employee_Info WHERE id=:id")
-    fun getEmployee(id: String): Flow<EmployeeDbModel>
+    fun getEmployee(id: String):EmployeeDbModel
+
+    @Query("SELECT * FROM Employee_Info WHERE id=:id")
+    fun getEmployeeFlow(id: String):Flow<EmployeeDbModel>
 
     @Query("SELECT * FROM Employee_Info")
     suspend fun getEmployeeList(): List<EmployeeDbModel>

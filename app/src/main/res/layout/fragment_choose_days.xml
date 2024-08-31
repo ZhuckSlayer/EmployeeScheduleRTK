@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.weekends.ChooseDaysFragment">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/exOneAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/example_1_bg_light">
+        android:background="@color/example_1_bg_light"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,11 +35,11 @@
                 android:id="@+id/exOneMonthText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
+                android:ellipsize="marquee"
                 android:fontFamily="sans-serif-light"
+                android:singleLine="true"
                 android:textColor="@color/example_1_white"
                 android:textSize="32sp"
-                android:ellipsize="marquee"
                 tools:text="April" />
 
         </LinearLayout>
@@ -52,17 +57,23 @@
     <com.kizitonwose.calendar.view.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:cv_dayViewResource="@layout/day_view"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:enabled="false"
-        android:id="@+id/buttonConfirm"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Подтвердить"
-        android:textSize="16sp"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/exOneAppBarLayout" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:enabled="false"
+        android:text="Подтвердить"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendarView" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

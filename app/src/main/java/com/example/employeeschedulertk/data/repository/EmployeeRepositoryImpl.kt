@@ -1,8 +1,5 @@
 package com.example.employeeschedulertk.data.repository
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.example.employeeschedulertk.data.mapper.EmployeeMapper
 import com.example.employeeschedulertk.data.database.EmployeeListDao
 import com.example.employeeschedulertk.data.network.FireBaseDataHelper
@@ -28,28 +25,38 @@ class EmployeeRepositoryImpl @Inject constructor(
 
     private val scope = CoroutineScope(Dispatchers.Main)
 
-    private val _employeeInfo = mutableListOf<EmployeeInfo>()
-    private val employeeInfo: List<EmployeeInfo>
+    private val _employeeInfo= mutableListOf<EmployeeInfo>()
+    private val employeeInfo:List<EmployeeInfo>
         get() = _employeeInfo.toList()
 
-    private val employeeInfoFlow = flow {
-        val employeeInfos = employeeListDao.getEmployeeList().map {
+
+    private val _employeeListInfo = mutableListOf<EmployeeInfo>()
+    private val employeeListInfo: List<EmployeeInfo>
+        get() = _employeeListInfo.toList()
+
+    private val employeeListInfoFlow = flow {
+        val employeeListInfos = employeeListDao.getEmployeeList().map {
             mapper.mapDbModelToEntity(it)
         }
-        _employeeInfo.addAll(employeeInfos)
-        emit(employeeInfos)
-        _employeeInfo.clear()
+        _employeeListInfo.addAll(employeeListInfos)
+        emit(employeeListInfos)
+        _employeeListInfo.clear()
     }
 
 
-    override fun getEmployeeList(): StateFlow<List<EmployeeInfo>> = employeeInfoFlow.stateIn(
+
+    override fun getEmployeeList(): StateFlow<List<EmployeeInfo>> = employeeListInfoFlow.stateIn(
         scope = scope,
         started = SharingStarted.Lazily,
-        initialValue = employeeInfo
+        initialValue = employeeListInfo
     )
 
-    override fun getEmployee(id: String): Flow<EmployeeInfo> {
-        return employeeListDao.getEmployee(id).map {
+    override fun getEmployee(id: String): EmployeeInfo {
+        return mapper.mapDbModelToEntity(employeeListDao.getEmployee(id))
+    }
+
+    override fun getEmployeeFlow(id: String): Flow<EmployeeInfo> {
+        return employeeListDao.getEmployeeFlow(id).map {
             mapper.mapDbModelToEntity(it)
         }
     }
@@ -58,7 +65,7 @@ class EmployeeRepositoryImpl @Inject constructor(
         employeeListDao.insertEmployee(mapper.mapDtoToDb(snapshot))
     }
 
-    override fun updateEmployeeSchedule(auth:String,children:List<String>) {
+    override fun updateEmployeeSchedule(auth:String,children:String) {
         val child= mutableMapOf("Days" to children)
         fireBaseDataHelper.dataBaseReference.child("Employee").child(auth)
             .updateChildren(child as Map<String, Any>)
