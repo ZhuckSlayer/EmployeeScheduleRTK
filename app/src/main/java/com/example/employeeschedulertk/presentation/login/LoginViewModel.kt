@@ -32,39 +32,35 @@ class LoginViewModel @Inject constructor(
 
     fun signIn(email: String, password: String) {
         fireBaseDataHelper.firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener{}
-        fireBaseDataHelper.firebaseAuth.createUserWithEmailAndPassword(email,password)
-        val dateMap = mutableMapOf<String, Any>()
-        dateMap[NODE_FIRST_NAME] = "Александр"
-        dateMap[NODE_LAST_NAME] = "Михайлов"
-        dateMap[NODE_SURNAME] = "Александрович"
-        dateMap[NODE_PHONE_NUMBER] = "82340001212"
-        dateMap[NODE_ADDRESS] = "Первомаечка"
-        dateMap[NODE_DAYS] = "2,5,6,7,1,2"
-        dateMap[NODE_AGE] = 18
-        dateMap[NODE_EXPERIENCE] = 12
-        dateMap[NODE_NUMBER_OF_CONNECTED_SERVICES] = 15
-        dateMap[NODE_NUMBER_OF_AWAITING_SERVICES] = 12
-        dateMap[NODE_CONNECTED_INTERNET] = 10
-        dateMap[NODE_CONNECTED_TELEVISION] = 2
-        dateMap[NODE_CONNECTED_SIMCARD] = 1
-        dateMap[NODE_CONNECTED_VIDEO] = 0
-        dateMap[NODE_SALARY] = 23000
-        dateMap[NODE_POSITION] = "Администратор"
-        dateMap[NODE_DECLINED_SERVICES] = 15
-        dateMap[NODE_ID] = fireBaseDataHelper.firebaseAuth.currentUser?.uid.toString()
-        fireBaseDataHelper.dataBaseReference.child("Employee")
-            .child(fireBaseDataHelper.firebaseAuth.currentUser?.uid.toString())
-            .updateChildren(dateMap).addOnCompleteListener{
-                if (it.isSuccessful){
-                    _isLoading.value=true
-                }
-                else{
-                    _isLoading.value=false
-                }
+            .addOnCompleteListener{
+                /*val dateMap = mutableMapOf<String, Any>()
+                dateMap[NODE_FIRST_NAME] = "Александр"
+                dateMap[NODE_LAST_NAME] = "Михайлов"
+                dateMap[NODE_SURNAME] = "Александрович"
+                dateMap[NODE_PHONE_NUMBER] = "82340001212"
+                dateMap[NODE_ADDRESS] = "Первомаечка"
+                dateMap[NODE_DAYS] = listOf(1,2,3,4,5,6,7,8)
+                dateMap[NODE_AGE] = 18
+                dateMap[NODE_EXPERIENCE] = 12
+                dateMap[NODE_NUMBER_OF_CONNECTED_SERVICES] = 15
+                dateMap[NODE_NUMBER_OF_AWAITING_SERVICES] = 12
+                dateMap[NODE_CONNECTED_INTERNET] = 10
+                dateMap[NODE_CONNECTED_TELEVISION] = 2
+                dateMap[NODE_CONNECTED_SIMCARD] = 1
+                dateMap[NODE_CONNECTED_VIDEO] = 0
+                dateMap[NODE_SALARY] = 23000
+                dateMap[NODE_POSITION] = "Стажер"
+                dateMap[NODE_DECLINED_SERVICES] = 15
+                dateMap[NODE_ID] = fireBaseDataHelper.firebaseAuth.currentUser?.uid.toString()
+                fireBaseDataHelper.dataBaseReference.child("Employee")
+                    .child(fireBaseDataHelper.firebaseAuth.currentUser?.uid.toString())
+                    .updateChildren(dateMap).addOnCompleteListener {
+                        _isLoading.value = it.isSuccessful
+                    }*/
             }
 
-        Log.d("TEST",fireBaseDataHelper.firebaseAuth.uid.toString())
+
+
 
     }
 

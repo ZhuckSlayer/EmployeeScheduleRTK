@@ -2,13 +2,11 @@ package com.example.employeeschedulertk.presentation.weekends
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.text.isDigitsOnly
 import androidx.core.view.children
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +15,8 @@ import com.example.employeeschedulertk.databinding.DayViewBinding
 import com.example.employeeschedulertk.databinding.FragmentChooseDaysBinding
 import com.example.employeeschedulertk.presentation.EmployeeApplication
 import com.example.employeeschedulertk.presentation.ViewModelFactory
+import com.example.employeeschedulertk.presentation.modalFragment.ModalFragmentSchedule
+import com.example.employeeschedulertk.presentation.modalFragment.ScheduleAdapter
 import com.example.employeeschedulertk.utils.Month
 import com.example.employeeschedulertk.utils.displayText
 import com.example.employeeschedulertk.utils.setTextColorRes
@@ -80,23 +80,17 @@ class ChooseDaysFragment : Fragment() {
                 textView.setTextColorRes(R.color.example_1_white)
             }
 
+
         val currentMonth = YearMonth.now()
         val startMonth = currentMonth.minusMonths(100)
         val endMonth = currentMonth.plusMonths(100)
         setupWeekCalendar(startMonth, endMonth, currentMonth, dayOfWeek)
         binding.buttonConfirm.setOnClickListener {
-            viewModel.insertSchedule(selectedDate.map {
+            viewModel.insertSchedule(selectedDate.joinToString {
                 it.dayOfMonth.toString() + " " + dayTORus(it.dayOfWeek.toString())
             })
-            val test = selectedDate.map {
-                it.dayOfMonth.toString() + " " + it.dayOfWeek
-            }
-            val user=selectedDate.toList()
-            val num = test.map {
-                it.replace(Regex("[^0-9]"), "").toInt()
-            }
-
         }
+
 
     }
 
@@ -116,14 +110,7 @@ class ChooseDaysFragment : Fragment() {
                     if (day.position == DayPosition.MonthDate) {
                         dateClicked(date = day.date)
                     }
-                    viewModel.getScheduleOnDay()
-                    lifecycleScope.launch {
-                        viewModel.test.collect {
-                            for (employee in it){
-                                Log.d("TEST",employee.schedule)
-                            }
-                        }
-                    }
+                    showBottomSheet(day.date.dayOfMonth)
                 }
             }
         }
@@ -166,8 +153,6 @@ class ChooseDaysFragment : Fragment() {
     }
 
     private fun dateClicked(date: LocalDate) {
-
-
         if (selectedDate.contains(date)) {
             selectedDate.remove(date)
         } else if (selectedDate.size < 8) {
@@ -231,5 +216,13 @@ class ChooseDaysFragment : Fragment() {
         "SUNDAY" -> "Вс"
         else -> "Дня не существует"
 
+    }
+
+    private fun showBottomSheet(current:Int){
+        val bundle = Bundle()
+        bundle.putInt(ModalFragmentSchedule.CURRENT_DAY, current)
+        val searchTicketsFragment = ModalFragmentSchedule()
+        searchTicketsFragment.arguments = bundle
+        searchTicketsFragment.show(childFragmentManager, ModalFragmentSchedule().tag)
     }
 }

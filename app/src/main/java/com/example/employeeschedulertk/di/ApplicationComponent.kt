@@ -1,13 +1,16 @@
 package com.example.employeeschedulertk.di
 
 import android.app.Application
+import com.example.employeeschedulertk.databinding.FragmentModalFragmentScheduleBinding
 import com.example.employeeschedulertk.presentation.login.LoginFragment
 import com.example.employeeschedulertk.presentation.MainActivity
 import com.example.employeeschedulertk.presentation.agents.AgentsFragment
+import com.example.employeeschedulertk.presentation.modalFragment.ModalFragmentSchedule
 import com.example.employeeschedulertk.presentation.profile.ProfileFragment
 import com.example.employeeschedulertk.presentation.schedule.ScheduleFragment
 import com.example.employeeschedulertk.presentation.supervisor.SupervisorProfileFragment
 import com.example.employeeschedulertk.presentation.weekends.ChooseDaysFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -26,6 +29,9 @@ interface ApplicationComponent {
     fun inject(fragment: AgentsFragment)
 
     fun inject(fragment: ChooseDaysFragment)
+
+    fun inject(fragmentSchedule: ModalFragmentSchedule)
+
 
     fun inject(fragment:ScheduleFragment)
 

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.employeeschedulertk.data.mapper.EmployeeMapper
 import com.example.employeeschedulertk.data.network.FireBaseDataHelper
 import com.example.employeeschedulertk.domain.EmployeeInfo
+import com.example.employeeschedulertk.domain.GetEmployeeFowUseCase
 import com.example.employeeschedulertk.domain.GetEmployeeUseCase
 import com.example.employeeschedulertk.domain.InsertEmployeeUseCase
 import com.example.employeeschedulertk.presentation.login.LoginViewModel.Companion.NODE_POSITION
@@ -22,7 +23,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val fireBaseDataHelper: FireBaseDataHelper,
     private val insertEmployeeUseCase: InsertEmployeeUseCase,
-    private val getEmployeeUseCase: GetEmployeeUseCase,
+    private val getEmployeeFowUseCase: GetEmployeeFowUseCase,
     private val mapper: EmployeeMapper
 ) : ViewModel() {
 
@@ -71,7 +72,7 @@ class ProfileViewModel @Inject constructor(
             })
     }
 
-    fun getDataUser() = getEmployeeUseCase(
+    fun getDataUser() = getEmployeeFowUseCase(
         fireBaseDataHelper
             .firebaseAuth
             .uid
