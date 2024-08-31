@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.employeeschedulertk.presentation.LoginFragment"
+        android:name="com.example.employeeschedulertk.presentation.login.LoginFragment"
         tools:layout="@layout/fragment_login"
         android:label="LoginFragment">
         <action
@@ -18,7 +18,35 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.employeeschedulertk.presentation.ProfileFragment"
+        android:name="com.example.employeeschedulertk.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_chooseDaysFragment"
+            app:destination="@id/chooseDaysFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_supervisorProfileFragment"
+            app:destination="@id/supervisorProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseDaysFragment"
+        android:name="com.example.employeeschedulertk.presentation.weekends.ChooseDaysFragment"
+        android:label="fragment_choose_days"
+        tools:layout="@layout/fragment_choose_days" >
+        <action
+            android:id="@+id/action_chooseDaysFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/supervisorProfileFragment"
+        android:name="com.example.employeeschedulertk.presentation.supervisor.SupervisorProfileFragment"
+        android:label="fragment_supervisor_profile"
+        tools:layout="@layout/fragment_supervisor_profile" />
 </navigation>

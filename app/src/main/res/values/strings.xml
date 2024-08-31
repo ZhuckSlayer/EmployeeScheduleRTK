@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">EmployeeScheduleRTK</string>
-    <string name="enterEmail" >Введите почту</string>
+    <string name="enterEmail">Введите почту</string>
     <string name="enterPassword">Введите пароль</string>
     <string name="SignIn">Войти</string>
     <string name="RememberMeCheckBox">Запомнить меня</string>
@@ -8,9 +8,9 @@
     <string name="lastName">Фамилия: %s</string>
     <string name="surName">Отчество: %s</string>
     <string name="age">Возраст: %s</string>
-    <string name="address">Адресс:%s</string>
+    <string name="address">Адресс: %s</string>
     <string name="phoneNumber">Телефон: %s</string>
-    <string name="experience">Стаж: %s</string>
+    <string name="experience">Стаж: %s мес.</string>
     <string name="salary">Заработная плата: %s</string>
     <string name="position">Должность: %s</string>
     <string name="connectedServices">Подключенные услуги: %s</string>
@@ -19,4 +19,8 @@
     <string name="connectedInternet">Подключено интернета: %s</string>
     <string name="connectedSimCard">Подключенно симкарт: %s</string>
     <string name="asasf">asasf</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_surname">%s %s</string>
+    <string name="schedule">Выходные: %s</string>
 </resources>

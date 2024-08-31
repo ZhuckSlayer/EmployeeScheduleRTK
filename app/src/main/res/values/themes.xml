@@ -1,8 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.EmployeeScheduleRTK" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:textViewStyle">@style/textViewFormat</item>
+    </style>
+
+    <style name="cardViewMy" parent="CardView">
+        <item name="android:backgroundTint">@color/onPrimary</item>
+    </style>
+    <style name="textViewFormat" parent="Widget.AppCompat.TextView">
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@color/textColor</item>
     </style>
 
     <style name="Theme.EmployeeScheduleRTK" parent="Base.Theme.EmployeeScheduleRTK" />

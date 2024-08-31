@@ -5,16 +5,17 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface EmployeeListDao {
 
     @Query("SELECT * FROM Employee_Info WHERE id=:id")
-    fun getEmployee(id:String):LiveData<EmployeeDbModel>
+    fun getEmployee(id: String): Flow<EmployeeDbModel>
 
     @Query("SELECT * FROM Employee_Info")
-    fun getEmployeeList():LiveData<List<EmployeeDbModel>>
+    suspend fun getEmployeeList(): List<EmployeeDbModel>
 
-    @Insert(onConflict =  OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEmployee(employeeDbModel: EmployeeDbModel)
 }

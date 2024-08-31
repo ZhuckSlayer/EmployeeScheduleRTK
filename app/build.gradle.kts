@@ -43,6 +43,10 @@ android {
 
 dependencies {
 
+    implementation("com.github.terrakok:cicerone:7.1")
+
+
+
     // LiveData
     implementation (libs.androidx.lifecycle.livedata.ktx)
     // ViewModel
@@ -63,6 +67,8 @@ dependencies {
 
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
+
+    implementation("com.kizitonwose.calendar:view:2.5.3")
 
 
     implementation (libs.firebase.auth)
