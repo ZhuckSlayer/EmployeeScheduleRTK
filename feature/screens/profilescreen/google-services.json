@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "218236922356",
+    "project_id": "employeeschedulertk",
+    "storage_bucket": "employeeschedulertk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218236922356:android:db6779c053cb05856af1a1",
+        "android_client_info": {
+          "package_name": "com.example.employeeschedulertk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfpF0fpU0cxu8bK4byKyS5LkHS74q7tIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

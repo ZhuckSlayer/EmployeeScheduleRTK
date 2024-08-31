@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="textColor">#FFFFFFFF</color>
+    <color name="blue">#2261BC</color>
+    <color name="orange">#FF5E5E</color>
+    <color name="primary">#0C0C0C</color>
+    <color name="onPrimary">#2F3035</color>
+    <color name="secondary">#3E3F43</color>
+    <color name="primarySecond">#242529</color>
+    <color name="green">#3A633B</color>
+    <color name="cardViewSecondary">#1D1E20</color>
+    <color name="false_checked_menu">#9F9F9F</color>
+    <color name="hintText">#9F9F9F</color>
+    <color name="example_1_white_light">#4DFFFFFF</color>
+    <color name="example_1_white">#D9FFFFFF</color>
+</resources>

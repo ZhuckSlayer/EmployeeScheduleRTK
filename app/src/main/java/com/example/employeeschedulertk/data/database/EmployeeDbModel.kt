@@ -2,6 +2,7 @@ package com.example.employeeschedulertk.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.concurrent.Flow
 
 @Entity(tableName = "Employee_Info")
 data class EmployeeDbModel(

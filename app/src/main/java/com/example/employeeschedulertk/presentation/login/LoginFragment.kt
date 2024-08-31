@@ -1,9 +1,9 @@
-package com.example.employeeschedulertk.presentation
+package com.example.employeeschedulertk.presentation.login
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +12,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.employeeschedulertk.R
 import com.example.employeeschedulertk.databinding.FragmentLoginBinding
+import com.example.employeeschedulertk.presentation.EmployeeApplication
+import com.example.employeeschedulertk.presentation.ViewModelFactory
+import com.example.employeeschedulertk.presentation.profile.ProfileFragment
 import javax.inject.Inject
 
 
 class LoginFragment : Fragment() {
 
-    private var _binding:FragmentLoginBinding?=null
-    private val binding:FragmentLoginBinding
+    private var _binding: FragmentLoginBinding? = null
+    private val binding: FragmentLoginBinding
         get() = _binding!!
 
     private val component by lazy {
@@ -40,8 +43,8 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding=FragmentLoginBinding.inflate(inflater,container,false)
-        viewModel=ViewModelProvider(this,viewModelFactory)[LoginViewModel::class.java]
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
         return binding.root
     }
 
@@ -52,9 +55,13 @@ class LoginFragment : Fragment() {
             viewModel.signIn(binding.etEmail.text.toString(), binding.etPassword.text.toString())
         }
         viewModel.user.observe(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.navFragment, ProfileFragment())
+                .commit()
         }
     }
+
+
     private fun textWatchListeners() {
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -86,7 +93,7 @@ class LoginFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding=null
+        _binding = null
     }
 
 
